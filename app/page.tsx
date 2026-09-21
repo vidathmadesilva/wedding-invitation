@@ -241,7 +241,7 @@ export default function Home() {
             </div>
 
             <div className="absolute top-0 w-full flex justify-center z-10 opacity-30 -translate-y-1/2">
-              <Image src="/images/mandala.PNG" alt="Mandala" width={600} height={600} className="animate-[spin_40s_linear_infinite] max-w-[120%] md:max-w-full" />
+              <Image src="/images/mandala.png" alt="Mandala" width={600} height={600} className="animate-[spin_40s_linear_infinite] max-w-[120%] md:max-w-full" />
             </div>
 
             <div className="relative z-20 flex flex-col items-center justify-center w-full px-4 mt-8 md:mt-16">
@@ -295,7 +295,7 @@ export default function Home() {
                 transition={{ duration: 60, ease: "linear", repeat: Infinity }}
                 className="absolute top-[0%] w-full flex justify-center opacity-25 -translate-y-[40%]"
               >
-                <Image src="/images/mandala.PNG" alt="Mandala" width={800} height={800} className="max-w-[150%] md:max-w-full" />
+                <Image src="/images/mandala.png" alt="Mandala" width={800} height={800} className="max-w-[150%] md:max-w-full" />
               </motion.div>
             </div>
 
@@ -767,7 +767,7 @@ export default function Home() {
                     {/* BIG Rotating Mandala at the VERY BOTTOM (Half Visible) */}
                     <div className="absolute bottom-0 left-[54%] -translate-x-1/2 translate-y-1/2 w-[600px] h-[600px] md:w-[800px] md:h-[800px] opacity-[0.11] pointer-events-none z-0">
                         <div className="relative w-full h-full animate-[spin_60s_linear_infinite] origin-[48%_52%]">
-                            <Image src="/images/mandala.PNG" alt="Mandala" fill className="object-contain" />
+                            <Image src="/images/mandala.png" alt="Mandala" fill className="object-contain" />
                         </div>
                     </div>
 
