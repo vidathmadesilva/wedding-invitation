@@ -195,7 +195,7 @@ export default function Home() {
   }, []);
 
   const handleSaveTheDate = () => {
-    const eventTitle = "Rohitha & Sasanjalee's Wedding";
+    const eventTitle = "Sasanjalee & Rohitha's Wedding";
     const eventLocation = "Hotel Sueen Nature, Baduraliya, Sri Lanka";
     const eventDetails = "Join us to celebrate our wedding ceremony!";
     const startTime = "20261202T033000Z";
@@ -355,9 +355,9 @@ export default function Home() {
                     </div>
 
                     <div className={`flex flex-col items-center text-[#1E3F20] drop-shadow-sm mb-8 ${playfair.className}`}>
-                        <h1 className="text-5xl md:text-6xl italic font-medium tracking-wide">Rohitha</h1>
-                        <span className="text-3xl md:text-4xl text-[#C91500] my-2 font-normal">&</span>
                         <h1 className="text-5xl md:text-6xl italic font-medium tracking-wide">Sasanjalee</h1>
+                        <span className="text-3xl md:text-4xl text-[#C91500] my-2 font-normal">&</span>
+                        <h1 className="text-5xl md:text-6xl italic font-medium tracking-wide">Rohitha</h1>
                     </div>
 
                     <p className="text-xs md:text-sm text-[#403635] mb-12 tracking-widest font-serif ">
@@ -427,9 +427,9 @@ export default function Home() {
                                     </div>
 
                                     <div className={`flex flex-col items-center text-center text-[#1E3F20] drop-shadow-sm mb-6 ${playfair.className}`}>
-                                        <h1 className="text-4xl md:text-5xl italic font-semibold tracking-wide">Rohitha</h1>
-                                        <span className="text-2xl md:text-3xl text-[#C91500] my-1 font-normal">&</span>
                                         <h1 className="text-4xl md:text-5xl italic font-semibold tracking-wide">Sasanjalee</h1>
+                                        <span className="text-2xl md:text-3xl text-[#C91500] my-1 font-normal">&</span>
+                                        <h1 className="text-4xl md:text-5xl italic font-semibold tracking-wide">Rohitha</h1>
                                     </div>
 
                                     <div className="flex items-center justify-center w-full max-w-[200px] mb-8 opacity-70">
@@ -917,9 +917,9 @@ export default function Home() {
                                 </div>
 
                                 <div className={`flex items-center justify-center text-[#FCE6BB] mb-8 ${playfair.className}`}>
-                                    <h1 className="text-3xl md:text-4xl italic font-semibold tracking-wide drop-shadow-md">Rohitha</h1>
-                                    <span className="text-2xl md:text-3xl text-[#C19A5B] mx-3 font-normal">&</span>
                                     <h1 className="text-3xl md:text-4xl italic font-semibold tracking-wide drop-shadow-md">Sasanjalee</h1>
+                                    <span className="text-2xl md:text-3xl text-[#C19A5B] mx-3 font-normal">&</span>
+                                    <h1 className="text-3xl md:text-4xl italic font-semibold tracking-wide drop-shadow-md">Rohitha</h1>
                                 </div>
 
                                 <h4 className="text-[11px] md:text-xs font-bold tracking-[0.3em] text-[#C19A5B] uppercase mb-16">
