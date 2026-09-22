@@ -25,7 +25,7 @@ const ScrollReveal = ({ children, className = "", delay = 0 }: { children: React
 );
 
 const TimeBox = ({ value, label }: { value: number; label: string }) => (
-  <div className="flex-1 aspect-square bg-[#F4EEDC]/40 backdrop-blur-md rounded-xl border-[1.5px] border-[#C19A5B]/40 p-1 shadow-sm">
+  <div className="flex-1 aspect-square bg-[#FCF9F3]/60 backdrop-blur-md rounded-xl border-[1.5px] border-[#C19A5B]/40 p-1 shadow-sm">
     <div className="flex flex-col items-center justify-center w-full h-full rounded-lg border-[1px] border-[#C19A5B]/60 bg-transparent overflow-hidden">
       <div className="relative h-8 md:h-12 w-full flex items-center justify-center">
         <AnimatePresence mode="popLayout">
@@ -48,6 +48,53 @@ const TimeBox = ({ value, label }: { value: number; label: string }) => (
     </div>
   </div>
 );
+
+// --- New Component: Falling Flowers Animation ---
+const FallingFlowers = () => {
+  const petals = Array.from({ length: 30 }); // Number of falling petals
+
+  return (
+    <div className="fixed inset-0 z-50 pointer-events-none overflow-hidden">
+      {petals.map((_, i) => {
+        // Randomize starting positions and animation durations
+        const startX = Math.random() * 100;
+        const duration = 5 + Math.random() * 5;
+        const delay = Math.random() * 5;
+        
+        return (
+          <motion.div
+            key={i}
+            initial={{ 
+              y: -50, 
+              x: `${startX}vw`, 
+              opacity: 0,
+              rotate: 0,
+              scale: Math.random() * 0.5 + 0.5 
+            }}
+            animate={{ 
+              y: "110vh", 
+              x: `${startX + (Math.random() * 10 - 5)}vw`, // Slight drift
+              opacity: [0, 1, 1, 0],
+              rotate: Math.random() * 360
+            }}
+            transition={{ 
+              duration: duration, 
+              repeat: Infinity, 
+              delay: delay,
+              ease: "linear"
+            }}
+            className="absolute top-0 text-[#C19A5B] opacity-80"
+          >
+            {/* Simple Flower Petal SVG */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+               <path d="M12 2C8 2 5 6 5 10c0 3.3 4 8 7 12 3-4 7-8.7 7-12 0-4-3-8-7-8zm0 18.5C9.5 17 6.5 12.5 6.5 10 6.5 6.5 9 4 12 4s5.5 2.5 5.5 6c0 2.5-3 7-5.5 10.5z" opacity="0.8"/>
+            </svg>
+          </motion.div>
+        );
+      })}
+    </div>
+  );
+};
 
 // RSVP Content Translations
 const rsvpContent = {
@@ -86,6 +133,7 @@ const rsvpContent = {
 export default function Home() {
   const [isOpened, setIsOpened] = useState(false);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  const [isCountdownFinished, setIsCountdownFinished] = useState(false);
 
   // Global Language State
   const [lang, setLang] = useState<'en' | 'si'>('en');
@@ -125,9 +173,10 @@ export default function Home() {
       const now = new Date().getTime();
       const distance = targetDate - now;
 
-      if (distance < 0) {
+      if (distance <= 0) {
         clearInterval(interval);
         setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setIsCountdownFinished(true); // Trigger the flowers!
       } else {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
@@ -223,6 +272,9 @@ export default function Home() {
   return (
     <>
       <audio ref={audioRef} src="/music/bg-music.mp3" loop />
+
+      {/* Falling Flowers triggered when countdown finishes and user is on details screen */}
+      {isOpened && isCountdownFinished && <FallingFlowers />}
 
       {/* Global Language Toggle Switch */}
       <div className="fixed top-4 right-4 z-50 flex items-center bg-[#F4EEDC]/80 border border-[#C19A5B]/40 rounded-full p-1 shadow-sm backdrop-blur-md">
@@ -363,7 +415,7 @@ export default function Home() {
                         <div className="w-full max-w-md flex flex-col items-center pt-8 px-4">
                             
                             {/* ======= 1. FIRST FRAME ======= */}
-                            <ScrollReveal className="w-full max-w-md bg-[#F4EEDC]/40 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mt-8">
+                            <ScrollReveal className="w-full max-w-md bg-[#FCF9F3]/60 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mt-8">
                                 <div className="flex flex-col items-center rounded-[1.6rem] border-[1px] border-[#C19A5B]/60 pt-10 pb-4 px-4 relative overflow-hidden h-full bg-transparent">
                                     <div className="text-center text-[#1E3F20] mb-5">
                                         <h2 className="text-lg md:text-xl font-bold tracking-[0.25em] uppercase mb-2">
@@ -429,7 +481,7 @@ export default function Home() {
                             </div>
 
                             {/* ======= 3. SECOND FRAME ======= */}
-                            <ScrollReveal className="w-full max-w-md bg-[#F4EEDC]/40 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mb-16">
+                            <ScrollReveal className="w-full max-w-md bg-[#FCF9F3]/60 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mb-16">
                                 <div className="flex flex-col items-center rounded-[1.6rem] border-[1px] border-[#C19A5B]/60 pt-16 pb-14 px-6 md:px-10 relative overflow-hidden h-full bg-transparent text-center">
                                     <div className="w-full max-w-[250px] md:max-w-[290px] mx-auto mb-15 relative">
                                         <Image src="/images/second_photo.png" alt="Couple Illustration 2" width={300} height={450} className="w-full h-auto object-contain" />
@@ -503,7 +555,7 @@ export default function Home() {
                                     <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#C19A5B]"></div>
                                 </div>
 
-                                <div className="w-full max-w-md bg-[#F4EEDC]/40 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mt-4">
+                                <div className="w-full max-w-md bg-[#FCF9F3]/60 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm mt-4">
                                     <div className="flex flex-col items-center rounded-[1.6rem] border-[1px] border-[#C19A5B]/60 pt-6 pb-6 px-6 relative overflow-hidden h-full bg-transparent text-center">
                                         <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#214A3B] border-[2px] border-[#C19A5B] flex items-center justify-center text-[#F4EEDC] mb-4 shadow-sm">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -636,7 +688,7 @@ export default function Home() {
                                     <div className="flex-1 h-[1px] bg-gradient-to-l from-transparent to-[#C19A5B]"></div>
                                 </div>
 
-                                <div className="w-full bg-[#F4EEDC]/40 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm">
+                                <div className="w-full bg-[#FCF9F3]/60 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm">
                                     <div className="flex flex-col items-center rounded-[1.6rem] border-[1px] border-[#C19A5B]/60 pt-8 pb-8 px-6 relative overflow-hidden h-full bg-transparent text-center">
                                         
                                         <div className="w-12 h-12 rounded-full border-[1.5px] border-[#214A3B] flex items-center justify-center text-[#214A3B] mb-4">
@@ -712,7 +764,7 @@ export default function Home() {
                                     {rsvpContent[lang].deadline}
                                 </p>
 
-                                <div className="w-full bg-[#F4EEDC]/40 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm">
+                                <div className="w-full bg-[#FCF9F3]/60 backdrop-blur-md rounded-[2rem] border-[1.5px] border-[#C19A5B]/40 p-2 md:p-2.5 shadow-sm">
                                     <form onSubmit={handleRSVPSubmit} className="flex flex-col rounded-[1.6rem] border-[1px] border-[#C19A5B]/60 p-5 md:p-7 relative overflow-hidden h-full bg-transparent text-left">
                                         
                                         {rsvpStatus === 'success' ? (
