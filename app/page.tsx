@@ -378,7 +378,7 @@ export default function Home() {
                                 Wednesday, 2<sup className="text-sm">nd</sup> December <br /> 2026
                             </div>
                             <p className={`${playfair.className} text-sm md:text-base text-[#5A5349] leading-[2.05] mb-10 px-2`}>
-                                <span className="text-[#2C3B2A] font-medium">Together with their families</span> request the honour of your presence at the celebration of their marriage.
+                                <span className="text-[#2C3B2A] font-medium">Together with our families</span> request the honour of your presence at the celebration of our marriage.
                             </p>
                             <div className="w-full max-w-[250px] h-[1px] bg-gradient-to-r from-transparent via-[#C19A5B] to-transparent mb-10 opacity-60"></div>
                             <div className="mb-4">
